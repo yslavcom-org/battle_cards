@@ -27,7 +27,29 @@ public class CardGame : MonoBehaviour
         Hand = new GameObject[HandSize];
         for (int x = 0; x < HandSize; x++)
         {
+            CardType = Random.Range(0, 5);
+            GameObject go = GameObject.Instantiate(FairyDeck[CardType]) as GameObject;
+            Vector3 positionCard = new Vector3((x * 10) + 1, 1, 0);
+            go.transform.position = positionCard;
+            Hand[x] = go;
+        }
 
+        EnemyHand = new GameObject[HandSize];
+        for (int i = 0; i < HandSize; i++)
+        {
+
+            CardType = Random.Range(0, 5);
+            CardName = string.Format("Witch{0}", CardType);
+            EnemyCards[i] = CardType;
+
+            GameObject go =
+                GameObject.Instantiate(CardBack) as GameObject;
+
+            go.name = CardName;
+            Vector3 positionEnemy = new Vector3((i * 10) + 1, 17, 0);
+            go.transform.position = positionEnemy;
+
+            EnemyHand[i] = go;
         }
     }
 
